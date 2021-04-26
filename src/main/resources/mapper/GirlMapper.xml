@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hbj.mybatisplus.dao.GirlMapper">
+    <select id="findAllPaging" resultType="com.hbj.mybatisplus.pojo.Girl" parameterType="com.hbj.mybatisplus.pojo.Girl">
+        select * from girl
+    </select>
+    <select id="findAllGirl" resultType="com.hbj.mybatisplus.pojo.Girl">
+        select * from girl
+        where 1=1 and
+            id in
+            <foreach collection="stringList" item="girlId" separator="," open="(" close=")">
+                #{girlId}
+            </foreach>
+    </select>
+</mapper>
