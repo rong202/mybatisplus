@@ -15,7 +15,7 @@ import java.util.List;
  * @author jobob
  * @since 2021-04-02
  */
-public interface IGirlService extends IService<Girl> {
+public interface IGirlServic {
 
    PageResult<List<Girl>> findAllPaging(Girl girl);
 

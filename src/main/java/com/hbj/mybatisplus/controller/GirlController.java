@@ -5,27 +5,21 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.hbj.mybatisplus.dao.GirlMapper;
 import com.hbj.mybatisplus.dao.UserMapper;
-import com.hbj.mybatisplus.model.PageResult;
 import com.hbj.mybatisplus.pojo.Girl;
 import com.hbj.mybatisplus.pojo.User;
-import com.hbj.mybatisplus.service.IGirlService;
+import com.hbj.mybatisplus.service.IGirlServic;
 import com.hbj.mybatisplus.service.UserService;
 import com.oracle.tools.packager.Log;
-import io.swagger.annotations.ApiImplicitParam;
-import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiParam;
-import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.HttpRequest;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
-import javax.management.Query;
 import java.util.*;
 import java.util.function.Function;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 /**
  * <p>
@@ -39,7 +33,7 @@ import java.util.stream.Stream;
 @RequestMapping("/girl")
 public class GirlController {
     @Autowired
-    private IGirlService GirlService;
+    private IGirlServic GirlService;
     @Resource
     private UserService userService;
     @Resource
@@ -47,7 +41,7 @@ public class GirlController {
     @Resource
     private UserMapper userMapper;
     @Resource
-    private IGirlService getGirlService;
+    private IGirlServic getGirlService;
 
     @GetMapping("findAll")
     public List<User> findAll() {
@@ -295,7 +289,8 @@ public class GirlController {
         return g.getId() +"#"+ g.getName();
     }
     @GetMapping("test")
-    public String Test(Girl girl){
+    public String Test(Girl girl, HttpRequest request){
+
         String a = getGirlService.a(girl);
         return a;
     }

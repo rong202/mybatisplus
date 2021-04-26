@@ -22,16 +22,19 @@ import java.util.Arrays;
 @Component
 @Slf4j
 public class WebLogAspect {
-
+    //@Pointcut("execution(public * *(..))execution(public * *(..))")
     @Pointcut("execution(public * com.hbj.mybatisplus.controller..*.*(..))")//切入点描述 这个是controller包的切入点
     public void controllerLog() {
     }//签名，可以理解成这个切入点的一个名称
 
-    //@Pointcut("execution(public * com.stuPayment.uiController..*.*(..))")//切入点描述，这个是uiController包的切入点
-    public void uiControllerLog() {
+    @Pointcut("execution(public * com.hbj.mybatisplus.service.*.*(..))")//切入点描述，这个是uiController包的切入点
+    public void serviceLog() {
+    }
+    @Pointcut("execution(public * com.hbj.mybatisplus.service.*.*(..))")//切入点描述，这个是uiController包的切入点
+    public void mapperLog() {
     }
 
-    @Before("controllerLog() ") //在切入点的方法run之前要干的
+    @Before("controllerLog() || serviceLog() || mapperLog()") //在切入点的方法run之前要干的
     public void logBeforeController(JoinPoint joinPoint) {
 
 
@@ -51,7 +54,7 @@ public class WebLogAspect {
         log.info("--------------------------------------------------------------------------------------------");
 
     }
-    @Around("controllerLog() ") //在切入点的方法run之前要干的
+    @Around("controllerLog()") //在切入点的方法run之前要干的
             public void logAfterController(ProceedingJoinPoint proceedingJoinPoint) throws Throwable {
         log.info("--------------------------------------------------------------------------------------------");
         log.info("################RESULT : " + proceedingJoinPoint.proceed().toString());
