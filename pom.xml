@@ -17,6 +17,14 @@
         <java.version>1.8</java.version>
     </properties>
     <dependencies>
+        <!-- https://mvnrepository.com/artifact/org.apache.pdfbox/pdfbox -->
+
+
+        <dependency>
+            <groupId>org.eclipse.birt.runtime.3_7_1</groupId>
+            <artifactId>com.lowagie.text</artifactId>
+            <version>2.1.7</version>
+        </dependency>
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
